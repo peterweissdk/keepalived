@@ -28,7 +28,8 @@ RUN apk add --no-cache \
     libnl3=3.11.0-r0 \
     libnfnetlink=1.0.2-r3 \
     openssl=3.3.2-r4 \
-    ipvsadm=1.31-r2
+    ipvsadm=1.31-r2 \
+    gettext=0.21.1-r0
 
 # Copy keepalived from builder
 COPY --from=builder /usr/local/sbin/keepalived /usr/local/sbin/
@@ -37,10 +38,10 @@ COPY --from=builder /usr/local/etc/sysconfig/keepalived /usr/local/etc/sysconfig
 COPY --from=builder /usr/local/share/snmp/mibs/KEEPALIVED-MIB.txt /usr/local/share/snmp/mibs/
 
 # Create directory for keepalived configuration
-RUN mkdir -p /etc/keepalived
+RUN mkdir -p /etc/keepalived /conf
 
-# Add a basic keepalived configuration
-COPY keepalived.conf /etc/keepalived/keepalived.conf
+# Copy configuration template
+COPY conf/keepalived.conf_tpl /conf/
 
 # Copy and set up entrypoint script
 COPY docker-entrypoint.sh /

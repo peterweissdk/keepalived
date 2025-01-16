@@ -7,6 +7,9 @@ if [ -n "$TZ" ]; then
     echo "$TZ" > /etc/timezone
 fi
 
+# Generate keepalived configuration from template
+envsubst < /conf/keepalived.conf_tpl > /etc/keepalived/keepalived.conf
+
 # Log the keepalived version
 keepalived --version
 
