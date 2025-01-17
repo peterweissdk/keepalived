@@ -16,5 +16,5 @@ vrrp_instance ${VRRP_INSTANCE} {
     unicast_src_ip ${UNICAST_SRC_IP}  # The IP address of this machine
     unicast_peer {
         ${UNICAST_PEERS}  # The IP address of peer machines
-    } 
+    }
 }
