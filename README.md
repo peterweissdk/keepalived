@@ -118,6 +118,10 @@ watch -n 5 'docker inspect --format="{{.State.Health.Status}}" keepalived'
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+### Code Quality
+
+This repository uses [Super-Linter](https://github.com/super-linter/super-linter) to maintain code quality. The linter will run automatically on all pull requests and pushes to main/master branches.
+
 ## 🆘 Support
 
 If you encounter any issues or need support, please file an issue on the GitHub repository.
