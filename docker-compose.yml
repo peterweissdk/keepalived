@@ -1,5 +1,4 @@
-version: '3.8'
-
+---
 services:
   keepalived:
     image: peterweissdk/keepalived:latest
@@ -12,8 +11,6 @@ services:
     network_mode: host
     env_file:
       - .env
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
     healthcheck:
       test: ["CMD", "/healthcheck.sh"]
       interval: 30s
