@@ -35,4 +35,4 @@ jobs:
           VALIDATE_ENV: false
           VALIDATE_GITHUB_ACTIONS: true
           # Filter out some file types we don't want to validate
-          FILTER_REGEX_EXCLUDE: .env
+          FILTER_REGEX_EXCLUDE:
