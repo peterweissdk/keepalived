@@ -2,20 +2,17 @@
 
 [![Static Badge](https://img.shields.io/badge/Docker-Container-white?style=flat&logo=docker&logoColor=white&logoSize=auto&labelColor=black)](https://docker.com/)
 [![Static Badge](https://img.shields.io/badge/Alpine-V3.21-white?style=flat&logo=alpinelinux&logoColor=white&logoSize=auto&labelColor=black)](https://www.alpinelinux.org/)
-[![Static Badge](https://img.shields.io/badge/KeepAliveD-V2.3.1-white?style=flat&logoColor=white&labelColor=black)](https://keepalived.org/)
+[![Static Badge](https://img.shields.io/badge/KeepAliveD-V2.3.2-white?style=flat&logoColor=white&labelColor=black)](https://keepalived.org/)
 [![Static Badge](https://img.shields.io/badge/GPL-V3-white?style=flat&logo=gnu&logoColor=white&logoSize=auto&labelColor=black)](https://www.gnu.org/licenses/gpl-3.0.en.html/)
 
 A lightweight, Alpine-based Docker container for running Keepalived with VRRP (Virtual Router Redundancy Protocol) support.
 
 ## ✨ Features
 
-- Alpine-based for minimal footprint
-- VRRP support for high availability
-- Environment variable configuration
-- Built-in health monitoring
-- Supports multiple virtual IPs
-- Unicast peer support
-- Docker health checks
+- **Alpine-based**: Lightweight and secure base image
+- **VRRP support**: High availability with Virtual Router Redundancy Protocol (VRRP)
+- **Easy Configuration**: Configure Keepalived using environment variables
+- **Health Checks**: Monitor service health with built-in Docker health checks
 
 ## 🚀 Quick Start
 
@@ -41,14 +38,15 @@ docker run -d \
 ### Environment Variables
 
 | Variable | Description | Example |
-|----------|-------------|---------|
-| INTERFACE | Network interface to use | eth0 |
-| STATE | Initial VRRP state (MASTER/BACKUP) | MASTER |
-| PRIORITY | Node priority (higher number = higher priority) | 200 |
-| ROUTER_ID | Unique router ID | 52 |
-| VIRTUAL_IPS | Virtual IP addresses (comma-separated) | 192.168.1.100/24 |
-| UNICAST_SRC_IP | Source IP for unicast VRRP | 192.168.1.4 |
-| UNICAST_PEERS | Peer IPs for unicast VRRP | 192.168.1.6 |
+
+- `VRRP_INSTANCE`: VRRP instance name - VI_1
+- `INTERFACE`:Network interface - eth0
+- `STATE`: Node state (MASTER/BACKUP) - MASTER
+- `PRIORITY`: Node priority (1-255) - 100
+- `ROUTER_ID`: Unique router ID - 50
+- `VIRTUAL_IPS`: Virtual IP address - 192.168.1.100/24
+- `UNICAST_SRC_IP`: Source IP for unicast - 192.168.1.101
+- `UNICAST_PEERS`: Peer IP address - 192.168.1.102
 
 ### Required Capabilities
 
@@ -102,8 +100,16 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 CMD ["/hea
 
 View container health status:
 ```bash
+# View health status
 docker inspect --format='{{.State.Health.Status}}' keepalived
+
+# View detailed health check history
+docker inspect --format='{{json .State.Health}}' keepalived | jq
+
+# Watch health status in real-time
+watch -n 5 'docker inspect --format="{{.State.Health.Status}}" keepalived'
 ```
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
