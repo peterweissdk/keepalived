@@ -7,11 +7,21 @@ if ! pgrep keepalived >/dev/null; then
     exit 1
 fi
 
-# Check if VRRP is active by looking at network interfaces
-if ! ip addr show | grep -q "$(cat /etc/keepalived/keepalived.conf | grep virtual_ipaddress -A 1 | tail -n1 | tr -d ' ')"; then
-    echo "Virtual IP is not configured"
+# Verify VIRTUAL_IPS environment variable is set
+if [ -z "$VIRTUAL_IPS" ]; then
+    echo "VIRTUAL_IPS environment variable is not set"
     exit 1
 fi
+
+# Check if configured virtual IPs are active on network interfaces
+echo "$VIRTUAL_IPS" | tr ',' '\n' | while read -r vip; do
+    # Extract just the IP address part if CIDR notation is used (e.g., 192.168.1.100/24 -> 192.168.1.100)
+    ip_addr=$(echo "$vip" | cut -d'/' -f1)
+    if ! ip addr show | grep -q "$ip_addr"; then
+        echo "Virtual IP $ip_addr is not configured on any interface"
+        exit 1
+    fi
+done
 
 # Check if keepalived is listening on VRRP port (112)
 if ! ss -nlu | grep -q ':112'; then
