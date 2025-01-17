@@ -52,9 +52,16 @@ RUN mkdir -p /etc/keepalived /conf
 # Copy configuration template
 COPY conf/keepalived.conf_tpl /conf/
 
+# Copy healthcheck script
+COPY healthcheck.sh /
+RUN chmod +x /healthcheck.sh
+
 # Copy and set up entrypoint script
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
+
+# Add healthcheck
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 CMD ["/healthcheck.sh"]
 
 # Expose relevant ports
 EXPOSE 112/udp
