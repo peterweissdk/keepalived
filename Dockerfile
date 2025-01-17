@@ -23,6 +23,18 @@ RUN git clone https://github.com/acassen/keepalived.git /tmp/keepalived && \
 # Final stage
 FROM alpine:3.21
 
+# Add OCI labels
+LABEL org.opencontainers.image.title="Keepalived"
+LABEL org.opencontainers.image.description="High availability VRRP load balancer"
+LABEL org.opencontainers.image.vendor="Peter Weiss"
+# LABEL org.opencontainers.image.version=${version}
+# LABEL org.opencontainers.image.created=${buildDate}
+# (Docker HUB) LABEL "org.opencontainers.image.url"
+LABEL org.opencontainers.image.source="https://github.com/peterweissdk/keepalived"
+# LABEL org.opencontainers.image.revision=${revision}
+# LABEL "org.opencontainers.image.documentation"
+LABEL org.opencontainers.image.licenses="GNU GENERAL PUBLIC LICENSE v3.0"
+
 # Install runtime dependencies
 RUN apk add --no-cache \
     libnl3=3.11.0-r0 \
