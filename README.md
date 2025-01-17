@@ -31,6 +31,9 @@ docker run -d \
   --net=host \
   --env-file .env \
   keepalived:latest
+
+# Run the container using the provided Docker Compose and .env file
+docker compose up -d
 ```
 
 ## 🔧 Configuration
@@ -75,6 +78,7 @@ keepalived/
 ├── Dockerfile
 ├── docker-entrypoint.sh
 ├── healthcheck.sh
+├── docker-compose.yml
 ├── LICENSE
 └── README.md
 ```

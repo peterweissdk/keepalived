@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  keepalived:
+    image: peterweissdk/keepalived:latest
+    container_name: keepalived
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+      - NET_BROADCAST
+      - NET_RAW
+    network_mode: host
+    env_file:
+      - .env
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    healthcheck:
+      test: ["CMD", "/healthcheck.sh"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
