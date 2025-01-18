@@ -43,7 +43,7 @@ RUN apk add --no-cache \
     openssl=3.3.2-r4 \
     ipvsadm=1.31-r3 \
     gettext=0.22.5-r0 \
-    busybox-extras=1.37.0-r9
+    busybox-extras=1.37.0-r12
 
 # Copy keepalived from builder
 COPY --from=builder /usr/local/sbin/keepalived /usr/local/sbin/
