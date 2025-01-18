@@ -1,6 +1,8 @@
 # Build stage
 FROM alpine:3.21 as builder
 
+WORKDIR /build
+
 # Install build dependencies
 RUN apk add --no-cache \
     autoconf=2.72-r0 \
@@ -13,8 +15,7 @@ RUN apk add --no-cache \
     git=2.47.2-r0
 
 # Clone and build keepalived
-RUN git clone https://github.com/acassen/keepalived.git /tmp/keepalived && \
-    cd /tmp/keepalived && \
+RUN git clone https://github.com/acassen/keepalived.git . && \
     ./build_setup && \
     ./configure --disable-dynamic-linking && \
     make && \
@@ -47,19 +48,17 @@ RUN apk add --no-cache \
 # Copy keepalived from builder
 COPY --from=builder /usr/local/sbin/keepalived /usr/local/sbin/
 
+# Set working directory
+WORKDIR /etc/keepalived
+
 # Create directory for keepalived configuration
-RUN mkdir -p /etc/keepalived /conf
+RUN mkdir -p /conf
 
-# Copy configuration template
+# Copy configuration template and scripts
 COPY conf/keepalived.conf_tpl /conf/
-
-# Copy healthcheck script
 COPY healthcheck.sh /
-RUN chmod +x /healthcheck.sh
-
-# Copy and set up entrypoint script
 COPY docker-entrypoint.sh /
-RUN chmod +x /docker-entrypoint.sh
+RUN chmod +x /healthcheck.sh /docker-entrypoint.sh
 
 # Add healthcheck
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 CMD ["sh", "-c", "/healthcheck.sh"]
