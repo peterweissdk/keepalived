@@ -5,6 +5,8 @@
 [![Static Badge](https://img.shields.io/badge/KeepAliveD-V2.3.2-white?style=flat&logoColor=white&labelColor=black)](https://keepalived.org/)
 [![Static Badge](https://img.shields.io/badge/GPL-V3-white?style=flat&logo=gnu&logoColor=white&logoSize=auto&labelColor=black)](https://www.gnu.org/licenses/gpl-3.0.en.html/)
 [![Lint Code Base](https://github.com/peterweissdk/keepalived/actions/workflows/linter.yml/badge.svg?branch=main)](https://github.com/peterweissdk/keepalived/actions/workflows/linter.yml)
+[![Docker Build](https://github.com/peterweissdk/keepalived/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/peterweissdk/keepalived/actions/workflows/docker-publish.yml)
+[![Docker Pulls](https://img.shields.io/docker/pulls/peterweissdk/keepalived)](https://hub.docker.com/r/peterweissdk/keepalived)
 
 A lightweight, Alpine-based Docker container for running Keepalived with VRRP (Virtual Router Redundancy Protocol) support.
 
