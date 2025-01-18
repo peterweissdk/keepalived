@@ -1,5 +1,5 @@
 # Build stage
-FROM alpine:4.21 as builder
+FROM alpine:3.21 as builder
 
 # Install build dependencies
 RUN apk add --no-cache \
