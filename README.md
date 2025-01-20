@@ -45,7 +45,7 @@ docker compose up -d
 | Variable | Description | Example |
 
 - `VRRP_INSTANCE`: VRRP instance name - VI_1
-- `INTERFACE`:Network interface - eth0
+- `INTERFACE`: Network interface - eth0
 - `STATE`: Node state (MASTER/BACKUP) - MASTER
 - `PRIORITY`: Node priority (1-255) - 100
 - `ROUTER_ID`: Unique router ID - 50
