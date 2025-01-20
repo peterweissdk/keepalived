@@ -15,8 +15,8 @@ on:
 env:
   IMAGE_NAME: peterweissdk/keepalived
 
-permissions:
-  packages: write
+# permissions:
+#  packages: write
 
 jobs:
   build:
