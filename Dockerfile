@@ -42,7 +42,8 @@ RUN apk add --no-cache \
     libnfnetlink=1.0.2-r3 \
     openssl=3.3.2-r4 \
     ipvsadm=1.31-r3 \
-    gettext=0.22.5-r0
+    gettext=0.22.5-r0 \
+    iproute2=6.11.0-r0
 
 # Copy keepalived from builder
 COPY --from=builder /usr/local/sbin/keepalived /usr/local/sbin/
