@@ -92,19 +92,19 @@ The container includes a comprehensive health check system that monitors:
 1. Keepalived Process Status
    - Verifies the keepalived daemon is running
 
-2. Virtual IP Configuration
+2. Virtual IP environment variable
+   - Verifies the VIRTUAL_IPS environment variable is set
+   
+3. Virtual IP Configuration
    - Confirms configured virtual IPs are active on network interfaces
    - Supports multiple IPs and CIDR notation
 
-3. VRRP Service Status
-   - Checks if keepalived is listening on VRRP port (112)
-
 Health checks run every 30 seconds with the following parameters:
-```dockerfile
-HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 CMD ["/healthcheck.sh"]
 ```
 
-View container health status:
+Vdockerfile
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 CMD ["/healthcheck.sh"]
+```iew container health status:
 ```bash
 # View health status
 docker inspect --format='{{.State.Health.Status}}' keepalived
