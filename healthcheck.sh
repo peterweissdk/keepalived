@@ -23,11 +23,5 @@ echo "$VIRTUAL_IPS" | tr ',' '\n' | while read -r vip; do
     fi
 done
 
-# Check if keepalived is listening on VRRP port (112)
-if ! ss -nlu | grep -q ':112'; then
-    echo "Keepalived is not listening on VRRP port"
-    exit 1
-fi
-
 echo "Keepalived is healthy"
 exit 0
