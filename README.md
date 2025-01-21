@@ -94,7 +94,7 @@ The container includes a comprehensive health check system that monitors:
 
 2. Virtual IP environment variable
    - Verifies the VIRTUAL_IPS environment variable is set
-   
+
 3. Virtual IP Configuration
    - Confirms configured virtual IPs are active on network interfaces
    - Supports multiple IPs and CIDR notation
