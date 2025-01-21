@@ -99,30 +99,23 @@ The container includes a comprehensive health check system that monitors:
    - Confirms configured virtual IPs are active on network interfaces
    - Supports multiple IPs and CIDR notation
 
-Health checks run every 30 seconds with the following parameters:
-```
 
-Vdockerfile
-HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 CMD ["/healthcheck.sh"]
-```iew container health status:
+View health status:
 ```bash
-# View health status
 docker inspect --format='{{.State.Health.Status}}' keepalived
-
-# View detailed health check history
+```
+View detailed health check history:
+```bash
 docker inspect --format='{{json .State.Health}}' keepalived | jq
-
-# Watch health status in real-time
+```
+Watch health status in real-time:
+```bash
 watch -n 5 'docker inspect --format="{{.State.Health.Status}}" keepalived'
 ```
 
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
-
-### Code Quality
-
-This repository uses [Super-Linter](https://github.com/super-linter/super-linter) to maintain code quality. The linter will run automatically on all pull requests and pushes to main/master branches.
 
 ## 🆘 Support
 
