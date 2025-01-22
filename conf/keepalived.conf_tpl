@@ -8,9 +8,9 @@ global_defs {
 vrrp_script check_script {
     script "/usr/local/bin/check_and_run.sh"
     interval 2
-    weight 50    # Large weight difference for clear state separation
-    fall 2       # Must fail twice to be considered down
-    rise 2       # Must succeed twice to be considered up
+    weight ${WEIGHT}    # Large weight difference for clear state separation
+    fall ${FALL}       # Must fail twice to be considered down
+    rise ${RISE}       # Must succeed twice to be considered up
 }
 
 vrrp_instance ${VRRP_INSTANCE} {
