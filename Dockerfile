@@ -68,9 +68,9 @@ RUN mkdir -p /usr/local/scripts
 COPY scripts/check_and_run.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/check_and_run.sh
 
-# Copy user check script if it exists (using wildcard to make it optional)
-COPY scripts/check-script.sh* /usr/local/scripts/ 2>/dev/null || true
-RUN if [ -f /usr/local/scripts/check-script.sh ]; then chmod +x /usr/local/scripts/check-script.sh; fi
+# Copy user check script if it exists (will be skipped if file doesn't exist)
+COPY scripts/check-script.sh /usr/local/scripts/ 2>/dev/null || echo "No check-script.sh found, skipping..."
+RUN chmod +x /usr/local/scripts/check-script.sh 2>/dev/null || echo "No check-script.sh to make executable"
 
 # Add healthcheck
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 CMD ["sh", "-c", "/healthcheck.sh"]
