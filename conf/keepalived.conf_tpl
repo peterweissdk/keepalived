@@ -4,6 +4,15 @@ global_defs {
   max_auto_priority -1 # 0 doesn't use automatic priority increases, and is the default. -1 disable the warning message at startup
 }
 
+# Define the script check using our wrapper
+vrrp_script check_script {
+    script "/usr/local/bin/check_and_run.sh"
+    interval 2
+    weight 2
+    fall 2
+    rise 2
+}
+
 vrrp_instance ${VRRP_INSTANCE} {
     interface ${INTERFACE}
     state ${STATE}  # MASTER on lb-1, BACKUP on lb-2
@@ -16,5 +25,10 @@ vrrp_instance ${VRRP_INSTANCE} {
     unicast_src_ip ${UNICAST_SRC_IP}  # The IP address of this machine
     unicast_peer {
         ${UNICAST_PEERS}  # The IP address of peer machines
+    }
+
+    # Track the check script
+    track_script {
+        check_script
     }
 }
