@@ -10,7 +10,7 @@ services:
       - NET_RAW
     network_mode: host
     volumes:
-      - ./scripts:/usr/local/scripts:ro
+      - ./check-script:/usr/local/scripts:ro
     env_file:
       - .env
     healthcheck:
