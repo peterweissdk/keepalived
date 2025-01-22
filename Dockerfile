@@ -68,8 +68,8 @@ RUN mkdir -p /usr/local/scripts
 COPY scripts/check_and_run.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/check_and_run.sh
 
-# Copy user check script if it exists
-COPY scripts/check-script.sh* /usr/local/scripts/check-script.sh 2>/dev/null || true
+# Copy user check script if it exists (using wildcard to make it optional)
+COPY scripts/check-script.sh* /usr/local/scripts/ 2>/dev/null || true
 RUN if [ -f /usr/local/scripts/check-script.sh ]; then chmod +x /usr/local/scripts/check-script.sh; fi
 
 # Add healthcheck
