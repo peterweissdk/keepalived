@@ -64,13 +64,9 @@ RUN chmod +x /healthcheck.sh /docker-entrypoint.sh
 RUN mkdir -p /usr/local/bin
 RUN mkdir -p /usr/local/scripts
 
-# Copy scripts
+# Copy wrapper script
 COPY scripts/check_and_run.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/check_and_run.sh
-
-# Copy user check script if it exists (will be skipped if file doesn't exist)
-COPY scripts/check-script.sh /usr/local/scripts/ 2>/dev/null || true
-RUN chmod +x /usr/local/scripts/check-script.sh 2>/dev/null || true
 
 # Add healthcheck
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 CMD ["sh", "-c", "/healthcheck.sh"]
