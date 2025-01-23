@@ -11,7 +11,7 @@ A lightweight, Alpine-based Docker container for running Keepalived with VRRP (V
 
 - **Alpine-based**: Lightweight and secure base image
 - **VRRP support**: High availability with Virtual Router Redundancy Protocol (VRRP)
-- **Easy Configuration**: Configure Keepalived using environment variables
+- **Easy Configuration**: Configure Keepalived using environment variables, and service check-scripts
 - **Health Checks**: Monitor service health with built-in Docker health checks
 
 ## 🚀 Quick Start
@@ -40,22 +40,33 @@ docker compose up -d
 
 ### Environment Variables
 
-| Variable | Description | Example |
-
-- `VRRP_INSTANCE`: VRRP instance name - VI_1
-- `INTERFACE`: Network interface - eth0
-- `STATE`: Node state (MASTER/BACKUP) - MASTER
-- `PRIORITY`: Node priority (1-255) - 100
-- `ROUTER_ID`: Unique router ID - 50
-- `VIRTUAL_IPS`: Virtual IP address - 192.168.1.100/24
-- `UNICAST_SRC_IP`: Source IP for unicast - 192.168.1.101
-- `UNICAST_PEERS`: Peer IP address - 192.168.1.102
+| Variable         | Description                                 | Example           |
+|------------------|---------------------------------------------|-------------------|
+| `TZ`             | Container timezone                          | Europe/Copenhagen |
+| `VRRP_INSTANCE`  | VRRP instance name                          | VI_1              |
+| `INTERFACE`      | Network interface                           | eth0              |
+| `STATE`          | Node state (MASTER/BACKUP)                  | MASTER            |
+| `PRIORITY`       | Node priority (1-255)                       | 100               |
+| `ROUTER_ID`      | Unique router ID                            | 52                |
+| `VIRTUAL_IPS`    | Virtual IP address with subnet mask         | 192.168.1.100/24  |
+| `UNICAST_SRC_IP` | Source IP for unicast communication         | 192.168.1.101     |
+| `UNICAST_PEERS`  | Peer IP addresses for unicast communication | 192.168.1.102     |
+| `WEIGHT`         | Weight for tracked scripts                  | 50                |
+| `FALL`           | Number of failures before transition        | 2                 |
+| `RISE`           | Number of successes before transition       | 2                 |
 
 ### Required Capabilities
 
 - NET_ADMIN: For network interface configuration
 - NET_BROADCAST: For VRRP advertisements
 - NET_RAW: For raw socket access
+
+### Service Check-Script
+
+Create a script to run at regular intervals to check the state of your service. Create a bind mount and copy the script into it
+- Name of script: check-script.sh
+- Bind mount point: /usr/local/scripts/
+- Runs at regular intervals: 2 seconds
 
 ## 🏗️ Building from Source
 
@@ -74,6 +85,9 @@ docker build -t keepalived:latest .
 keepalived/
 ├── conf/
 │   └── keepalived.conf_tpl
+├── scripts/
+│   └── check_and_run.sh
+├── .github/
 ├── .env
 ├── Dockerfile
 ├── docker-entrypoint.sh
