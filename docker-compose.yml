@@ -13,9 +13,3 @@ services:
       - ./check-script:/usr/local/scripts:ro
     env_file:
       - .env
-    healthcheck:
-      test: ["CMD", "/healthcheck.sh"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-      start_period: 5s
