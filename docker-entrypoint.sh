@@ -8,7 +8,7 @@ if [ -n "$TZ" ]; then
 fi
 
 # Format the UNICAST_PEERS for proper indentation
-UNICAST_PEERS="$(echo "$UNICAST_PEERS" | tr ',' '\n' | sed 's/^[[:space:]]*//g' | sed 's/[[:space:]]*$//g' | sed 's/^/        /')"
+UNICAST_PEERS=$(echo "$UNICAST_PEERS" | sed 's/,/\n        /g')
 export UNICAST_PEERS
 
 # Generate keepalived configuration from template
