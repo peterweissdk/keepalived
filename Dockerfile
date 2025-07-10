@@ -5,14 +5,14 @@ WORKDIR /build
 
 # Install build dependencies
 RUN apk add --no-cache \
-    autoconf=2.72-r0 \
-    automake=1.17-r0 \
+    autoconf=2.72-r1 \
+    automake=1.17-r1 \
     build-base=0.5-r3 \
     libnl3-dev=3.11.0-r0 \
     libnfnetlink-dev=1.0.2-r3 \
     openssl-dev=3.5.1-r0 \
-    linux-headers=6.6-r1 \
-    git=2.47.2-r0
+    linux-headers=6.14.2-r0 \
+    git=2.49.1-r0
 
 # Clone and build keepalived
 RUN git clone https://github.com/acassen/keepalived.git . && \
