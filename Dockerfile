@@ -35,6 +35,8 @@ LABEL org.opencontainers.image.source="https://github.com/peterweissdk/keepalive
 # LABEL org.opencontainers.image.revision=${revision}
 # LABEL "org.opencontainers.image.documentation"
 LABEL org.opencontainers.image.licenses="GNU GENERAL PUBLIC LICENSE v3.0"
+# Indicate that Git metadata is not needed
+LABEL org.opencontainers.image.source.no-git=true
 
 # Install runtime dependencies
 RUN apk add --no-cache \
