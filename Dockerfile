@@ -1,5 +1,5 @@
 # Build stage
-FROM alpine:3.21 as builder
+FROM alpine:3.22 as builder
 
 WORKDIR /build
 
@@ -22,7 +22,7 @@ RUN git clone https://github.com/acassen/keepalived.git . && \
     make install
 
 # Final stage
-FROM alpine:3.21
+FROM alpine:3.22
 
 # Add OCI labels
 LABEL org.opencontainers.image.title="Keepalived"
@@ -40,7 +40,7 @@ LABEL org.opencontainers.image.licenses="GNU GENERAL PUBLIC LICENSE v3.0"
 RUN apk add --no-cache \
     libnl3=3.11.0-r0 \
     libnfnetlink=1.0.2-r3 \
-    openssl=3.3.3-r0 \
+    openssl=3.3.4-r0 \
     ipvsadm=1.31-r3 \
     gettext=0.22.5-r0 \
     iproute2=6.11.0-r0
