@@ -1,5 +1,5 @@
 # Build stage
-FROM alpine:3.22 as builder
+FROM alpine:3.22 AS builder
 
 WORKDIR /build
 
