@@ -1,5 +1,5 @@
 # Build stage
-FROM alpine:3.22 AS builder
+FROM alpine:3.23 AS builder
 
 WORKDIR /build
 
@@ -22,7 +22,7 @@ RUN git clone https://github.com/acassen/keepalived.git . && \
     make install
 
 # Final stage
-FROM alpine:3.22
+FROM alpine:3.23
 
 # Add OCI labels
 LABEL org.opencontainers.image.title="Keepalived"
