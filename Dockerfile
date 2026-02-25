@@ -5,14 +5,14 @@ WORKDIR /build
 
 # Install build dependencies
 RUN apk add --no-cache \
-    autoconf=2.72-r1 \
-    automake=1.17-r1 \
-    build-base=0.5-r3 \
-    libnl3-dev=3.11.0-r0 \
-    libnfnetlink-dev=1.0.2-r3 \
-    openssl-dev=3.5.3-r1 \
-    linux-headers=6.14.2-r0 \
-    git=2.49.1-r0
+    autoconf \
+    automake \
+    build-base \
+    libnl3-dev \
+    libnfnetlink-dev \
+    openssl-dev \
+    linux-headers \
+    git
 
 # Clone and build keepalived
 RUN git clone https://github.com/acassen/keepalived.git . && \
@@ -40,12 +40,12 @@ LABEL org.opencontainers.image.source.no-git=true
 
 # Install runtime dependencies
 RUN apk add --no-cache \
-    libnl3=3.11.0-r0 \
-    libnfnetlink=1.0.2-r3 \
-    openssl=3.5.3-r1 \
-    ipvsadm=1.31-r3 \
-    gettext=0.24.1-r0 \
-    iproute2=6.15.0-r0
+    libnl3 \
+    libnfnetlink \
+    openssl \
+    ipvsadm \
+    gettext \
+    iproute2
 
 # Copy keepalived from builder
 COPY --from=builder /usr/local/sbin/keepalived /usr/local/sbin/
