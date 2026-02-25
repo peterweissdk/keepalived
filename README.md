@@ -1,8 +1,8 @@
 # 💾 Keepalived Docker Container
 
 [![Static Badge](https://img.shields.io/badge/Docker-Container-white?style=flat&logo=docker&logoColor=white&logoSize=auto&labelColor=black)](https://docker.com/)
-[![Static Badge](https://img.shields.io/badge/Alpine-V3.22-white?style=flat&logo=alpinelinux&logoColor=white&logoSize=auto&labelColor=black)](https://www.alpinelinux.org/)
-[![Static Badge](https://img.shields.io/badge/KeepAliveD-V2.3.2-white?style=flat&logoColor=white&labelColor=black)](https://keepalived.org/)
+[![Static Badge](https://img.shields.io/badge/Alpine-V3.23-white?style=flat&logo=alpinelinux&logoColor=white&logoSize=auto&labelColor=black)](https://www.alpinelinux.org/)
+[![Static Badge](https://img.shields.io/badge/KeepAliveD-Latest-white?style=flat&logoColor=white&labelColor=black)](https://keepalived.org/)
 [![Static Badge](https://img.shields.io/badge/GPL-V3-white?style=flat&logo=gnu&logoColor=white&logoSize=auto&labelColor=black)](https://www.gnu.org/licenses/gpl-3.0.en.html/)
 
 A lightweight, Alpine-based Docker container for running Keepalived with VRRP (Virtual Router Redundancy Protocol) support.
