@@ -63,8 +63,7 @@ COPY docker-entrypoint.sh /
 RUN chmod +x /healthcheck.sh /docker-entrypoint.sh
 
 # Create directory for user scripts
-RUN mkdir -p /usr/local/bin
-RUN mkdir -p /usr/local/scripts
+RUN mkdir -p /usr/local/bin /usr/local/scripts
 
 # Copy wrapper script
 COPY scripts/check_and_run.sh /usr/local/bin/

@@ -1,18 +1,19 @@
+---
 # Name of the workflow as it appears in the GitHub Actions tab
 name: keepalived_image
 
-on:
+"on":
   # Runs automatically every day at 07:31 UTC to keep images fresh
   schedule:
     - cron: '31 7 * * *'
   # Runs whenever code is pushed to the 'main' branch
   push:
-    branches: [ "main" ]
+    branches: ["main"]
     # Also runs when a version tag (e.g., v1.0.2) is pushed
-    tags: [ 'v*.*.*' ]
+    tags: ['v*.*.*']
   # Runs on any Pull Request targeting the 'main' branch (usually for testing the build)
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 env:
   # Defines where to push the image (GitHub Container Registry)
