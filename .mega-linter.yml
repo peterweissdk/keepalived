@@ -1,0 +1,21 @@
+# MegaLinter configuration
+# https://megalinter.io/
+
+# Only enable specific linters
+ENABLE:
+  - BASH
+  - DOCKERFILE
+  - YAML
+
+# Disable all other linters
+DISABLE_LINTERS: []
+
+# Apply fixes automatically (set to false to only report)
+APPLY_FIXES: none
+
+# Fail on errors
+FAIL_IF_MISSING_LINTER_IN_FLAVOR: false
+
+# Report configuration
+SHOW_ELAPSED_TIME: true
+FILEIO_REPORTER: false
