@@ -53,21 +53,17 @@ COPY --from=builder /usr/local/sbin/keepalived /usr/local/sbin/
 # Set working directory
 WORKDIR /etc/keepalived
 
-# Create directory for keepalived configuration
-RUN mkdir -p /conf
+# Create directories
+RUN mkdir -p /conf /usr/local/bin /usr/local/scripts
 
 # Copy configuration template and scripts
 COPY conf/keepalived.conf_tpl /conf/
 COPY healthcheck.sh /
 COPY docker-entrypoint.sh /
-RUN chmod +x /healthcheck.sh /docker-entrypoint.sh
-
-# Create directory for user scripts
-RUN mkdir -p /usr/local/bin /usr/local/scripts
-
-# Copy wrapper script
 COPY scripts/check_and_run.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/check_and_run.sh
+
+# Set executable permissions
+RUN chmod +x /healthcheck.sh /docker-entrypoint.sh /usr/local/bin/check_and_run.sh
 
 # Add healthcheck
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 CMD ["sh", "-c", "/healthcheck.sh"]
